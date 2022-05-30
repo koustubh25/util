@@ -2,7 +2,7 @@
 
 ## I) Kubernetes Architecture
 
-![AKS Architecture](static/chainlink-eks.svg)
+![AKS Architecture](static/chainlink-eks.png)
 
 #### Subnets
 It mainly consists of a single VPC with two subnets within viz. `private` and `public`.
