@@ -9,14 +9,19 @@ It mainly consists of a single VPC with two subnets within viz. `private` and `p
 1. **Private Subnet**:
 
 i. All the Kubernetes nodes (worker nodes) are a part of this private subnet.
+
 ii. Nothing in the private subnet can be accessed directly over the Internet at this point i.e. no ingress.
+
 iii. There might be a few instances when the node would want to communicate over the Internet e.g. update the k8s version of the node. The node can do so by accessing the NAT Gateway. There has to be a route in the VPC which will allow workloads in the private subnet to communicate with the NAT Gateway.
+
 iv. The NAT Gateway is then connected to the Internet Gateway which opens up the doors to the Internet. Remember, the NAT Gateway works only in one direction, hence it allows traffic from the private subnet to the outside world, but no one can hit the NAT Gateway from the Internet.
 </br>
 2. **Public Subnet**
 
 i. The Public subnet only includes two things viz., the NAT Gateway and the bastion host.
+
 ii. Both of these are connected to the Internet Gateway.
+
 iii. The Bastion host is simply used to access the ec2 instances (ssh) used as Kubernetes nodes. This should be a very rare and only admins should be allowed to do this. There should be a sec. group that allows connections from the bastion host to the VMs.
 
 #### Kubernetes Nodes
